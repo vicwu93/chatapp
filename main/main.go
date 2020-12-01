@@ -6,7 +6,6 @@ import (
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
-	"os"
 	"strings"
 )
 
@@ -148,21 +147,9 @@ func echo(listOfConns []*wsConn, conn *wsConn) {
 	storeMsg(conn)
 	disconnect(conn)
 }
-func GetPort() string {
-	var port = os.Getenv("PORT")
-	// Set a default port if there is nothing in the environment
-	if port == "" {
-		port = "8888"
-		fmt.Println("ERROR: No PORT environment variable detected, defaulting to localhost:" + port)
-	}
-	return ":" + port
-}
 
 func main() {
-	// port := "8888"
-	port := GetPort()
 	http.HandleFunc("/ws", wsHandler)
-	fmt.Printf("Listening on port : " + port)
-	// http.ListenAndServe(":8888", nil)
-	http.ListenAndServe(port, nil)
+	fmt.Printf("Listening on port:8888 ...\n")
+	http.ListenAndServe(":8888", nil)
 }

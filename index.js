@@ -31,15 +31,15 @@ myApp.sendmsg = () => {
 myApp.init = () => {
     let user = prompt(`What's your name?`)
     myApp.websocket = new WebSocket(`${wsLOCALHOST}${user}`)
-    console.log(`websocket established:`, myApp.websocket)
+    console.log(myApp.websocket)
     myApp.container = document.getElementById('container')
 
     myApp.websocket.onmessage = (event) => {
         let msg = ''
 
-        // console.log("received onmsg")
+        console.log("received onmsg")
         let res = JSON.parse(event.data)
-        // console.log("reached here...")
+        console.log("reached here...")
 
         switch(res.Option) {
             case 'connect':
